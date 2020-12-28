@@ -53,6 +53,7 @@ public class CodeGenerator {
         config.setAuthor("rango");
         config.setOpen(false);
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        config.setServiceName("%sService");
         generator.setGlobalConfig(config);
 
         //数据源配置
