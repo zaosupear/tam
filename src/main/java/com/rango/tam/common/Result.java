@@ -19,6 +19,10 @@ public class Result<T> implements Serializable {
     private T data;
     private ResultCode resultCode;
 
+    public Result(ResultCode resultCode){
+        this.resultCode = resultCode;
+    }
+
     public Result(ResultCode resultCode, T data){
         this.code = resultCode.code();
         this.message = resultCode.message();
@@ -26,28 +30,18 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> success(){
-        Result result = new Result();
-        result.setResultCode(ResultCode.SUCCESS);
-        return result;
+        return new Result<>(ResultCode.SUCCESS);
     }
 
     public static <T> Result<T> success(T data){
-        Result result = new Result();
-        result.setResultCode(ResultCode.SUCCESS);
-        result.setData(data);
-        return result;
+        return new Result<>(ResultCode.SUCCESS, data);
     }
 
     public static <T> Result<T> failure(ResultCode resultCode){
-        Result result = new Result();
-        result.setResultCode(resultCode);
-        return result;
+        return new Result<>(resultCode);
     }
 
     public static <T> Result<T> failure(ResultCode resultCode, T data){
-        Result result = new Result();
-        result.setResultCode(resultCode);
-        result.setData(data);
-        return result;
+        return new Result<>(resultCode, data);
     }
 }
