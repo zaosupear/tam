@@ -4,12 +4,9 @@ import ${package.Entity}.${entity};
 import ${superServiceClassPackage};
 
 /**
- * <p>
- * ${table.comment!} 服务类
- * </p>
- *
  * @author ${author}
- * @since ${date}
+ * @description ${cfg.description} — 服务接口
+ * @date ${date} ${cfg.time}
  */
 <#if kotlin>
 interface ${table.serviceName} : ${superServiceClass}<${entity}>

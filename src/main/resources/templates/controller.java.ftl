@@ -14,7 +14,7 @@ import ${superControllerClassPackage};
 
 /**
  * @author ${author}
- * @description ${cfg.description}
+ * @description ${cfg.description} — 控制器
  * @date ${date} ${cfg.time}
  */
 <#if restControllerStyle>
