@@ -24,8 +24,8 @@ public class Result<T> implements Serializable {
     }
 
     public Result(ResultCode resultCode, T data){
-        this.code = resultCode.code();
-        this.message = resultCode.message();
+        this.code = resultCode.getCode();
+        this.message = resultCode.getMessage();
         this.data = data;
     }
 

@@ -1,10 +1,13 @@
 package com.rango.tam.common;
 
+import lombok.Getter;
+
 /**
  * @author rango
  * @description
  * @date 2020-12-27 22:08
  */
+@Getter
 public enum ResultCode {
 
     /** 成功状态码 */
@@ -30,13 +33,4 @@ public enum ResultCode {
         this.code = code;
         this.message = message;
     }
-
-    public Integer code(){
-        return this.code;
-    }
-
-    public String message(){
-        return this.message;
-    }
-
 }
