@@ -1,6 +1,7 @@
 package com.rango.tam.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author rango
@@ -8,6 +9,7 @@ import lombok.Data;
  * @date 2020/12/16 16:54
  */
 @Data
+@Accessors(chain = true)
 public class User {
     private Long id;
     private String name;
