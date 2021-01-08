@@ -27,7 +27,7 @@ public class ErrorResult {
         ErrorResult errorResult = new ErrorResult();
         errorResult.setCode(resultCode.code());
         errorResult.setMessage(resultCode.message());
-        errorResult.setException(e.getClass().getName());
+        errorResult.setException(e.getMessage());
         return errorResult;
     }
 

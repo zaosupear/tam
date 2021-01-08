@@ -1,6 +1,6 @@
 package com.rango.tam.handler;
 
-import com.rango.tam.GlobalException;
+import com.rango.tam.exception.GlobalException;
 import com.rango.tam.common.ErrorResult;
 import com.rango.tam.common.ResultCode;
 import lombok.extern.slf4j.Slf4j;

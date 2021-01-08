@@ -44,8 +44,6 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
         if(o instanceof ErrorResult){
             ErrorResult errorResult = (ErrorResult) o;
             return Result.failure(errorResult.getCode(), errorResult.getMessage(), errorResult.getException());
-        } else if(o instanceof Result){
-            return o;
         }
         return Result.success(o);
     }

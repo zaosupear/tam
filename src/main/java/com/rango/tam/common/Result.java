@@ -18,8 +18,6 @@ public class Result<T> implements Serializable {
     private String message;
     private T data;
 
-    public Result(){}
-
     public Result(ResultCode resultCode){
         this.code = resultCode.code();
         this.message = resultCode.message();

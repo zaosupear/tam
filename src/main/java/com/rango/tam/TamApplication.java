@@ -11,8 +11,8 @@ public class TamApplication {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(TamApplication.class, args);
-        NettyServer nettyServer = new NettyServer();
-        nettyServer.start("127.0.0.1", 8024);
+//        NettyServer nettyServer = new NettyServer();
+//        nettyServer.start("127.0.0.1", 8024);
     }
 
 }

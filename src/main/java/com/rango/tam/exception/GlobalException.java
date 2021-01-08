@@ -1,4 +1,4 @@
-package com.rango.tam;
+package com.rango.tam.exception;
 
 import com.rango.tam.common.ResultCode;
 import lombok.Data;
@@ -10,7 +10,6 @@ import lombok.EqualsAndHashCode;
  * @date 2021/1/6 10:11
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class GlobalException extends RuntimeException {
 
     private Integer code;
