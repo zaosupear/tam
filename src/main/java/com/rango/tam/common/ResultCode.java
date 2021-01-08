@@ -7,7 +7,6 @@ import lombok.Getter;
  * @description
  * @date 2020-12-27 22:08
  */
-@Getter
 public enum ResultCode {
 
     /** 成功状态码 */
@@ -24,7 +23,9 @@ public enum ResultCode {
     USER_LOGIN_ERROR(2002, "账号不存在或密码错误"),
     USER_ACCOUNT_FORBIDDEN(2003, "账号已被禁用"),
     USER_NOT_EXIST(2004, "用户不存在"),
-    USER_HAS_EXISTED(2005, "用户已存在");
+    USER_HAS_EXISTED(2005, "用户已存在"),
+
+    SYSTEM_ERROR(10000, "系统异常，请稍后重试");
 
     private Integer code;
     private String message;
@@ -33,4 +34,13 @@ public enum ResultCode {
         this.code = code;
         this.message = message;
     }
+
+    public Integer code(){
+        return this.code();
+    }
+
+    public String message(){
+        return this.message();
+    }
+
 }

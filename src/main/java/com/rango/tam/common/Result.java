@@ -17,15 +17,23 @@ public class Result<T> implements Serializable {
     private Integer code;
     private String message;
     private T data;
-    private ResultCode resultCode;
+
+    public Result(){}
 
     public Result(ResultCode resultCode){
-        this.resultCode = resultCode;
+        this.code = resultCode.code();
+        this.message = resultCode.message();
     }
 
     public Result(ResultCode resultCode, T data){
-        this.code = resultCode.getCode();
-        this.message = resultCode.getMessage();
+        this.code = resultCode.code();
+        this.message = resultCode.message();
+        this.data = data;
+    }
+
+    public Result(Integer code, String message, T data){
+        this.code = code;
+        this.message = message;
         this.data = data;
     }
 
@@ -41,7 +49,7 @@ public class Result<T> implements Serializable {
         return new Result<>(resultCode);
     }
 
-    public static <T> Result<T> failure(ResultCode resultCode, T data){
-        return new Result<>(resultCode, data);
+    public static <T> Result<T> failure(Integer code, String message, T data){
+        return new Result<>(code, message, data);
     }
 }

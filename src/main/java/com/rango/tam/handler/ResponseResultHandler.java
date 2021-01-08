@@ -1,6 +1,7 @@
 package com.rango.tam.handler;
 
 import com.rango.tam.annotation.ResponseResult;
+import com.rango.tam.common.ErrorResult;
 import com.rango.tam.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
@@ -40,12 +41,12 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        log.info(" 进入 返回体 重写格式 处理中。。。。。");
-//        if(o instanceof ErrorResult){
-//            log.info(" 返回值 异常 作包装 处理中。。。。。");
-//            ErrorResult errorResult = (ErrorResult) o;
-//            return Result.failure(errorResult.getCode(), errorResult.getMessage(), errorResult.getErrors());
-//        }
+        if(o instanceof ErrorResult){
+            ErrorResult errorResult = (ErrorResult) o;
+            return Result.failure(errorResult.getCode(), errorResult.getMessage(), errorResult.getException());
+        } else if(o instanceof Result){
+            return o;
+        }
         return Result.success(o);
     }
 }
