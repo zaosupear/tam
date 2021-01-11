@@ -36,11 +36,11 @@ public enum ResultCode {
     }
 
     public Integer code(){
-        return this.code();
+        return this.code;
     }
 
     public String message(){
-        return this.message();
+        return this.message;
     }
 
 }
