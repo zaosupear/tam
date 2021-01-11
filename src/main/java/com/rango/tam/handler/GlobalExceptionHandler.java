@@ -1,5 +1,6 @@
 package com.rango.tam.handler;
 
+import com.rango.tam.exception.AuthenticationException;
 import com.rango.tam.exception.GlobalException;
 import com.rango.tam.common.ErrorResult;
 import com.rango.tam.common.ResultCode;
@@ -22,22 +23,28 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(AuthenticationException.class)
+    public ErrorResult authenticationExceptionHandler(AuthenticationException e){
+        log.error("身份验证失败！原因是: {}", e.getMessage());
+        return ErrorResult.fail(ResultCode.USER_NOT_LOGGED_IN, e);
+    }
+
     @ExceptionHandler(GlobalException.class)
-    public ErrorResult GlobalExceptionHandler(GlobalException e, HttpServletRequest request) {
+    public ErrorResult businessExceptionHandler(GlobalException e) {
         log.error("发生业务异常！原因是: {}", e.getMessage());
         return ErrorResult.fail(e.getCode(), e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Throwable.class)
-    public ErrorResult handlerThrowable(Throwable e, HttpServletRequest request) {
+    public ErrorResult handlerThrowable(Throwable e) {
         log.error("发生未知异常！原因是: ", e);
         ErrorResult error = ErrorResult.fail(ResultCode.SYSTEM_ERROR, e);
         return error;
     }
 
     @ExceptionHandler(BindException.class)
-    public ErrorResult handleBindExcpetion(BindException e, HttpServletRequest request) {
+    public ErrorResult handleBindExcpetion(BindException e) {
         log.error("发生参数校验异常！原因是：",e);
         ErrorResult error = ErrorResult.fail(ResultCode.PARAM_IS_INVALID, e, e.getAllErrors().get(0).getDefaultMessage());
         return error;
