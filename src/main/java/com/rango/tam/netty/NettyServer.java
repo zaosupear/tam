@@ -5,29 +5,40 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.springframework.stereotype.Component;
 
 /**
  * @author rango
  * @description
  * @date 2021-01-03 16:15
  */
+@Component
 public class NettyServer {
 
-    public void start(String host, int port) throws  Exception {
+    private EventLoopGroup bossGroup;
+    private EventLoopGroup workGroup;
+    private ServerBootstrap serverBootstrap;
+    private ChannelFuture channelFuture;
 
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workGroup = new NioEventLoopGroup();
+    private static NettyServer nettyServer;
 
-        try {
-            ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(bossGroup, workGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .childHandler(new ServerInitializer());
-            ChannelFuture channelFuture = serverBootstrap.bind(host, port).sync();
-            channelFuture.channel().closeFuture().sync();
-        } finally {
-            bossGroup.shutdownGracefully();
-            workGroup.shutdownGracefully();
+    private NettyServer(){
+        bossGroup = new NioEventLoopGroup();
+        workGroup = new NioEventLoopGroup();
+        serverBootstrap = new ServerBootstrap();
+        serverBootstrap.group(bossGroup, workGroup)
+                .channel(NioServerSocketChannel.class)
+                .childHandler(new ServerInitializer());
+    }
+
+    public static synchronized NettyServer getInstance(){
+        if(nettyServer == null){
+            nettyServer = new NettyServer();
         }
+        return nettyServer;
+    }
+
+    public void start(String host, int port) {
+        this.channelFuture = serverBootstrap.bind(host, port);
     }
 }
