@@ -1,7 +1,5 @@
 package com.rango.tam.common;
 
-import lombok.Getter;
-
 /**
  * @author rango
  * @description
