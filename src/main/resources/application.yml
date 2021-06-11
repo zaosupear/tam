@@ -14,11 +14,7 @@ spring:
     username: root
     password: 20111124
 
-# Activiti Config
-  activiti:
-    database-schema-update: true
-    db-history-used: true
-    history-level: audit
+
 
 # Logger Config
 logging:
@@ -35,6 +31,28 @@ mybatis-plus:
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# Activiti Config
+  activiti:
+    database-schema-update: true
+    db-history-used: true
+    history-level: audit
+
+# RabbitMQ Config
+  rabbitmq:
+    host: 192.168.1.104
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 3000s
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    template:
+      mandatory: true
+    exchange:
+      name: exchange
+    key: key.rango
 
 # Netty Config
 netty:
